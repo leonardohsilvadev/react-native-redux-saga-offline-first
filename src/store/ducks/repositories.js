@@ -30,7 +30,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   // [Types.ADD_REPOSITORY_REQUEST]: state => state.merge({ loading: true }),
   // [Types.ADD_REPOSITORY_SUCCESS]: (state, { repository }) =>
   // state.update('data', data => [...data, repository])
-  [Types.ADD_REPOSITORY_REQUEST]: state => ({ ...state, loading: true }),
-  [Types.ADD_REPOSITORY_SUCCESS]: (state, { repository }) => ({ ...state, data: [...state.data, repository] }),
-  [Types.ADD_REPOSITORY_ERROR]: (state, { error }) => ({ ...state, error: true, errorData: [...state.errorData, error] })
+  [Types.ADD_REPOSITORY_REQUEST]: state => ({ ...state, loading: true, error: false, errorData: [] }),
+  [Types.ADD_REPOSITORY_SUCCESS]: (state, { repository }) =>
+    ({ ...state, data: [...state.data, repository], loading: false }),
+  [Types.ADD_REPOSITORY_ERROR]: (state, { error }) =>
+    ({ ...state, error: true, errorData: [...state.errorData, error], loading: false })
 })
